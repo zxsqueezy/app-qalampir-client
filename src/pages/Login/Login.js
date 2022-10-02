@@ -2,10 +2,11 @@ import React from 'react';
 import './login.scss';
 import {Formik} from "formik";
 import {connect} from "react-redux";
-import {login} from '../../redux/actions/loginAction'
+import {login} from '../../redux/actions/loginAction';
+import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-
+    const navigate = useNavigate();
     return (
         <div className="container">
             <div className="row vh-100 justify-content-center align-items-center">
@@ -17,8 +18,7 @@ const Login = (props) => {
                         <Formik
                             initialValues={{ username: '', password: '' }}
                             onSubmit={(values ) => {
-                                props.login(values);
-
+                                props.login(values, navigate);
                             }}
                         >
                             {({
@@ -44,19 +44,18 @@ const Login = (props) => {
                                         onChange={handleChange}
                                         value={values.password}
                                     />
-                                    <button type="submit" className="btn btn-success btn-block mt-3" disabled={isSubmitting}>Sing-in</button>
-
+                                    <button
+                                        type="submit"
+                                        disabled={isSubmitting}
+                                        className="btn btn-success btn-block mt-3">Sign-in</button>
                                 </form>
                             )}
                         </Formik>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
 
-
-
-export default connect(null, {login}) (Login);
+export default connect(null, {login})(Login);

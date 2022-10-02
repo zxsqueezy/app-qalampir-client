@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import {applyMiddleware, compose, legacy_createStore as createStore} from "redux";
 import {rootReducer} from "./redux/reducers/rootReducer";
 import {Provider} from "react-redux";
-import thunk from "react-thunk";
+import thunk from "redux-thunk";
 
 const store = createStore(rootReducer, compose(applyMiddleware(thunk)));
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,5 +15,4 @@ root.render(
     <App />
   </Provider>
 );
-
 
